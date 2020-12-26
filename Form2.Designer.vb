@@ -33,12 +33,11 @@ Partial Class Form2
         Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PrintDialog1 = New System.Windows.Forms.PrintDialog()
-        Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.PrintPreviewDialog1 = New System.Windows.Forms.PrintPreviewDialog()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -116,10 +115,6 @@ Partial Class Form2
         Me.Column8.MinimumWidth = 6
         Me.Column8.Name = "Column8"
         '
-        'PrintDialog1
-        '
-        Me.PrintDialog1.UseEXDialog = True
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
@@ -158,6 +153,16 @@ Partial Class Form2
         Me.Button1.Text = "طباعة"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'PrintPreviewDialog1
+        '
+        Me.PrintPreviewDialog1.AutoScrollMargin = New System.Drawing.Size(0, 0)
+        Me.PrintPreviewDialog1.AutoScrollMinSize = New System.Drawing.Size(0, 0)
+        Me.PrintPreviewDialog1.ClientSize = New System.Drawing.Size(400, 300)
+        Me.PrintPreviewDialog1.Enabled = True
+        Me.PrintPreviewDialog1.Icon = CType(resources.GetObject("PrintPreviewDialog1.Icon"), System.Drawing.Icon)
+        Me.PrintPreviewDialog1.Name = "PrintPreviewDialog1"
+        Me.PrintPreviewDialog1.Visible = False
+        '
         'Form2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -191,10 +196,9 @@ Partial Class Form2
     Friend WithEvents Column6 As DataGridViewTextBoxColumn
     Friend WithEvents Column7 As DataGridViewTextBoxColumn
     Friend WithEvents Column8 As DataGridViewTextBoxColumn
-    Friend WithEvents PrintDialog1 As PrintDialog
-    Friend WithEvents PrintDocument1 As Printing.PrintDocument
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Button1 As Button
+    Friend WithEvents PrintPreviewDialog1 As PrintPreviewDialog
 End Class

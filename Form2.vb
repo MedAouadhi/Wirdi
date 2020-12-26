@@ -15,6 +15,10 @@
     Dim dhaifPace As Integer = (9 \ (7 - tasmiiCount))
     Dim lastHizbList As List(Of Integer) = New List(Of Integer)
     Dim matinPace As Integer
+    Dim oldMatinCount As Integer
+    Dim newMatinCount As Integer
+    Dim matinDelta As Integer
+
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         'the list that whill hold the matin pages and will be updated dynamically
@@ -33,6 +37,8 @@
         'format the new hifdh list according to the hifdh pace
         newHifdhList = PrepareList(Form1.newList, Form1.hifdhCounter)
 
+        'get the initial matinList count
+        oldMatinCount = matinList.Count
         Dim content As String = ""
         Dim row As Integer = 0
         Dim col As Integer = 0
@@ -52,6 +58,7 @@
         Dim effectiveDays As Integer = 0
         Dim lastRet As Integer() = {ENDED, 0}
         Dim lastHizbToMatin As Integer() = {0, 0}
+
         'Create the necessary rows
         For index As Integer = 0 To weeks
             Me.DataGridView1.Rows.Add()
@@ -89,22 +96,33 @@
                 effectiveDay += 1
 
                 'TODO consider a special check If In the first week only dhaif Is there, predictive matret will be wrong
-
+                'TODO check the newhifdh when number of pages is different than one 
+                ' Only the lasthizb calculation should be affected, and the addition of the matret
                 content = PopulateString(hifdhRet,  'Hifdh
                                          matRet, 'tikrar el matin
                                          dhaRet, 'tamtin dha3if
                                          lastRet) 'last hizb 
 
+                'check if the new hifdh is over or not
                 If (li < newHifdhList.Count) Then
                     lastHizbToMatin = updateLastHizb(hifdhRet, li)
                 Else
-                    lastHizbToMatin = {0}
-                    lastHizbList.Clear()
-                End If
+                    'the new hifdh is over, lastHizbList will only decrease now
+                    If (lastHizbList.Count > 0) Then
+                        'get the head of the list 
+                        lastHizbToMatin = updateLastHizbFinal(li)
+                    End If
 
+                    'newHifdh is over
+                    hifdhRet = ENDED
+                End If
+                'TODO , Should look when the lastHizbToMatin
                 'last hizb calculation
                 If (lastHizbList.Count > 0) Then
                     lastRet = GetContingent(lastHizbList, 0, lastHizbList.Count - 1)
+                Else
+                    'things are done, clear the lastRet variable
+                    lastRet = {ENDED, ENDED}
                 End If
 
                 For Each elemPage In lastHizbToMatin
@@ -125,9 +143,9 @@
                 content = ""
             End If
 
-            Label1.Text = i.ToString
-            Label2.Text = li.ToString
-            Label3.Text = weeks.ToString
+            Label1.Text = "lastHizbList count :" + lastHizbList.Count.ToString
+            Label2.Text = "dhahiflist count:" + dhaifList.Count.ToString
+            Label3.Text = "matinList count:" + matinList.Count.ToString
             Try
                 Me.DataGridView1.Item(col + 1, row).Value = content
             Catch ex As Exception
@@ -137,7 +155,21 @@
 
             'Next
             i = i + 1
-        Loop Until (lastHizbList.Count = 0 And dhaifList.Count = 0 And li >= gDaysCount)
+
+            'TODO : there's a problem with the transfer of the lastHizb to matin, we close it earlier than 
+            'correct
+            newMatinCount = matinList.Count
+            matinDelta = oldMatinCount - newMatinCount
+            oldMatinCount = newMatinCount
+
+            'for debug purposes
+            If (lastHizbList.Count > 0) Then
+                If (lastHizbList(lastHizbList.Count - 1) = 183) Then
+                    Dim dummy As Integer
+                    dummy = dummy + 1
+                End If
+            End If
+        Loop Until (lastHizbList.Count = 0 And dhaifList.Count = 0 And matinDelta = 0)
 
 
 
@@ -178,6 +210,33 @@
                 End If
         End Select
 
+
+        Return retVal
+    End Function
+
+    'This is almost the same function as updateLastHizb but it only removes the pages
+    'from the list and doesn't add, it will be used when there's no more new hifdh is to be found
+    Private Function updateLastHizbFinal(li As Integer) As Integer()
+
+        Dim retVal As Integer() = {0, 0}
+        'update the lastHizbList
+        Select Case Form1.hifdhCounter
+            Case 0.5
+                retVal(0) = lastHizbList(0)
+                retVal(1) = lastHizbList(1)
+                lastHizbList.RemoveRange(0, 2)
+
+            Case 1
+                ' 1 page
+                retVal(0) = lastHizbList(0)
+                lastHizbList.RemoveRange(0, 1)
+            Case 2
+                ' 0.5 page
+                If ((li - 1) Mod 2 = 0) Then
+                    retVal(0) = lastHizbList(0)
+                    lastHizbList.RemoveRange(0, 1)
+                End If
+        End Select
 
         Return retVal
     End Function
