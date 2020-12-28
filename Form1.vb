@@ -2,6 +2,7 @@
 
     Dim startPage As Integer
     Dim endPage As Integer
+    Public daysEn As List(Of String) = New List(Of String)
     Public days As String() = {"الاحد", "الاثنين", "الثلاثاء", "الاربعاء", "الخميس", "الجمعة", "السبت"}
     Dim oldHifdh As Boolean = True
     Dim tasmiiCount As Integer
@@ -24,7 +25,7 @@
         Panel2.BackColor = Color.FromArgb(170, Panel2.BackColor)
         Button1.BackColor = Color.FromArgb(70, Button1.BackColor)
         GroupBox1.BackColor = Color.FromArgb(150, GroupBox1.BackColor)
-
+        daysEn.InsertRange(0, {"Sunday", "Monday", "Tuesday", "Wednesday", "Thurday", "Friday", "Saturday"})
 
         'test inputs 
         TextBox_Name.Text = "Mohamed"
@@ -196,26 +197,6 @@
         Else
             GroupBox1.Enabled = True
         End If
-    End Sub
-
-    Private Sub Panel2_Paint(sender As Object, e As PaintEventArgs) Handles Panel2.Paint
-
-    End Sub
-
-    Private Sub ComboBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox_tasmii3.SelectedIndexChanged
-
-    End Sub
-
-    Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label3.Click
-
-    End Sub
-
-    Private Sub Label2_Click(sender As Object, e As EventArgs) Handles Label2.Click
-
-    End Sub
-
-    Private Sub Label11_Click(sender As Object, e As EventArgs) Handles Label11.Click
-
     End Sub
 
 End Class

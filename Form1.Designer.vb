@@ -277,7 +277,7 @@ Partial Class Form1
         '
         Me.ComboBox_hifdh.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBox_hifdh.FormattingEnabled = True
-        Me.ComboBox_hifdh.Items.AddRange(New Object() {"نصف صفحة", "صفحة كاملة"})
+        Me.ComboBox_hifdh.Items.AddRange(New Object() {"نصف صفحة", "صفحة كاملة", "صفحتان"})
         Me.ComboBox_hifdh.Location = New System.Drawing.Point(144, 237)
         Me.ComboBox_hifdh.Name = "ComboBox_hifdh"
         Me.ComboBox_hifdh.RightToLeft = System.Windows.Forms.RightToLeft.Yes

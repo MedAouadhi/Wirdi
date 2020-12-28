@@ -59,8 +59,12 @@
         Dim lastRet As Integer() = {ENDED, 0}
         Dim lastHizbToMatin As Integer() = {0, 0}
 
+        'the total number of needed weeks is the number of weeks needed to finish the 
+        'new hifdh plus the last hizb needed days to be added completely to the matinlist.
+        ' a hizb = 9 pages
+        weeks = weeks + (9 * Form1.hifdhCounter) / 7
         'Create the necessary rows
-        For index As Integer = 0 To weeks
+        For index As Integer = 0 To weeks - 1
             Me.DataGridView1.Rows.Add()
         Next
 
@@ -72,12 +76,30 @@
             End If
         Next
 
+        'determine the starting day
+        Dim startDay As Integer = Form1.daysEn.IndexOf(Form1.DateTimePicker1.Value.DayOfWeek.ToString)
+        Dim hasStarted As Boolean = False
         Do
             'big loop , all days including the tasmii ones
             'For i As Integer = 0 To ((gDaysCount + weeks * tasmiiCount) - 1)
             row = i \ 7
             col = i Mod 7
 
+            'just for the starting week, de daly until we reach the starting day to begin with
+            If (col < startDay And row = 0) Then
+                i = i + 1
+                Me.DataGridView1.Item(col + 1, row).Style.BackColor = Color.LightGray
+                Continue Do
+            End If
+
+            'fill the date in the datagrid view
+            Dim NewDate As Date = DateAdd(DateInterval.WeekOfYear, row, Form1.DateTimePicker1.Value)
+            Dim weekDate As String = "الأسبوع ال" + (row + 1).ToString + Environment.NewLine + "(" + NewDate.Date.ToShortDateString + ")"
+            Me.DataGridView1.Item(0, row).Value = weekDate
+            Dim cellStyle As DataGridViewCellStyle = New DataGridViewCellStyle()
+            cellStyle.Font = New Font("Abdo Free", 13, FontStyle.Regular)
+            cellStyle.BackColor = Color.Aquamarine
+            Me.DataGridView1.Item(0, row).Style.ApplyStyle(cellStyle)
             If (col = 0) Then
                 effectiveDay = 0
             End If
@@ -89,21 +111,24 @@
 
                 If (li < newHifdhList.Count) Then
                     hifdhRet = newHifdhList(li)
-                    li += 1
+                Else
+                    hifdhRet = ENDED
                 End If
+
+                'increment the day counter
+                li += 1
 
                 dhaRet = calculateDhaif(effectiveDay)
                 effectiveDay += 1
 
                 'TODO consider a special check If In the first week only dhaif Is there, predictive matret will be wrong
-                'TODO check the newhifdh when number of pages is different than one 
-                ' Only the lasthizb calculation should be affected, and the addition of the matret
+
                 content = PopulateString(hifdhRet,  'Hifdh
                                          matRet, 'tikrar el matin
                                          dhaRet, 'tamtin dha3if
                                          lastRet) 'last hizb 
 
-                'check if the new hifdh is over or not
+
                 If (li < newHifdhList.Count) Then
                     lastHizbToMatin = updateLastHizb(hifdhRet, li)
                 Else
@@ -111,10 +136,10 @@
                     If (lastHizbList.Count > 0) Then
                         'get the head of the list 
                         lastHizbToMatin = updateLastHizbFinal(li)
+                    Else
+                        'there's no more lasthizb pages
+                        lastHizbToMatin = {0}
                     End If
-
-                    'newHifdh is over
-                    hifdhRet = ENDED
                 End If
                 'TODO , Should look when the lastHizbToMatin
                 'last hizb calculation
@@ -143,10 +168,13 @@
                 content = ""
             End If
 
-            Label1.Text = "lastHizbList count :" + lastHizbList.Count.ToString
-            Label2.Text = "dhahiflist count:" + dhaifList.Count.ToString
-            Label3.Text = "matinList count:" + matinList.Count.ToString
+            'Fill the datagrid, if the row doesnt exist , catch the exception 
+            'and add a new one
+
             Try
+                If (content = "") Then
+                    Me.DataGridView1.Item(col + 1, row).Style.BackColor = Color.LightGray
+                End If
                 Me.DataGridView1.Item(col + 1, row).Value = content
             Catch ex As Exception
                 Me.DataGridView1.Rows.Add()
@@ -162,16 +190,7 @@
             matinDelta = oldMatinCount - newMatinCount
             oldMatinCount = newMatinCount
 
-            'for debug purposes
-            If (lastHizbList.Count > 0) Then
-                If (lastHizbList(lastHizbList.Count - 1) = 183) Then
-                    Dim dummy As Integer
-                    dummy = dummy + 1
-                End If
-            End If
-        Loop Until (lastHizbList.Count = 0 And dhaifList.Count = 0 And matinDelta = 0)
-
-
+        Loop Until (lastHizbList.Count = 0 And dhaifList.Count = 0 And matinDelta = 0 And li >= gDaysCount)
 
     End Sub
 
@@ -303,7 +322,7 @@
                     output.Add(CDbl(elem))
                 Next
             Case 0.5
-                For i As Integer = 0 To Input.Count Step 2
+                For i As Integer = 0 To Input.Count - 2 Step 2
                     output.Add(CDbl(Input(i)))
                 Next
         End Select
@@ -446,4 +465,147 @@
 
         Return dhaRet
     End Function
+    ''' <summary>
+    '''  For printing the calendars
+    ''' </summary>
+
+    Dim mRow As Integer = 0
+    Dim newpage As Boolean = True
+    Private Sub PrintDocument1_PrintPage(sender As System.Object, e As System.Drawing.Printing.PrintPageEventArgs) Handles PrintDocument1.PrintPage
+        ' sets it to show '...' for long text
+        Dim fmt As StringFormat = New StringFormat(StringFormatFlags.LineLimit)
+        fmt.LineAlignment = StringAlignment.Center
+        fmt.Trimming = StringTrimming.EllipsisCharacter
+        fmt.FormatFlags = StringFormatFlags.DirectionRightToLeft
+        Dim y As Int32 = e.MarginBounds.Top + 100
+        Dim rc As Rectangle
+        Dim x As Int32
+        Dim h As Int32 = 0
+        Dim row As DataGridViewRow
+        Dim dgvZZ As DataGridView = DataGridView1
+        ' print the header text for a new page
+        '   use a grey bg just like the control
+        e.PageSettings.Landscape = True
+
+        Dim nameTitle As String = " الاسم واللقب :" + Form1.TextBox_Name.Text
+        rc = New Rectangle(e.MarginBounds.Right - nameTitle.Length * 10, y - 100, 300, 50)
+        Dim textFont As Font = New Font("Abdo Free", 13, FontStyle.Regular)
+
+        e.Graphics.DrawString(nameTitle, textFont, Brushes.Black, rc, fmt)
+
+        If newpage Then
+            row = dgvZZ.Rows(mRow)
+            x = e.MarginBounds.Left - 40
+            For Each cell As DataGridViewCell In row.Cells
+                ' since we are printing the control's view,
+                ' skip invidible columns
+                If cell.Visible Then
+                    rc = New Rectangle(x, y, cell.Size.Width - 10, cell.Size.Height)
+
+                    e.Graphics.FillRectangle(Brushes.LightGray, rc)
+                    e.Graphics.DrawRectangle(Pens.Black, rc)
+
+                    ' reused in the data pront - should be a function
+                    Select Case dgvZZ.Columns(cell.ColumnIndex).DefaultCellStyle.Alignment
+                        Case DataGridViewContentAlignment.BottomRight,
+                         DataGridViewContentAlignment.MiddleRight
+                            fmt.Alignment = StringAlignment.Far
+                            rc.Offset(-1, 0)
+                        Case DataGridViewContentAlignment.BottomCenter,
+                        DataGridViewContentAlignment.MiddleCenter
+                            fmt.Alignment = StringAlignment.Center
+                        Case Else
+                            fmt.Alignment = StringAlignment.Near
+                            rc.Offset(2, 0)
+                    End Select
+
+
+                    Dim txt_rc As Rectangle = New Rectangle(x - 10, y, cell.Size.Width - 10, cell.Size.Height)
+                    'column header printing
+                    e.Graphics.DrawString(dgvZZ.Columns(7 - cell.ColumnIndex).HeaderText,
+                                            textFont, Brushes.Black, txt_rc, fmt)
+                    x += rc.Width
+                    h = Math.Max(h, rc.Height)
+                End If
+            Next
+            y += h
+
+        End If
+        newpage = False
+
+        ' now print the data for each row
+        Dim thisNDX As Int32
+        For thisNDX = mRow To dgvZZ.RowCount - 1
+            ' no need to try to print the new row
+            If dgvZZ.Rows(thisNDX).IsNewRow Then Exit For
+
+            row = dgvZZ.Rows(thisNDX)
+            x = e.MarginBounds.Left
+            h = 0
+
+            ' reset X for data
+            x = e.MarginBounds.Left - 40
+
+            ' print the data
+            For Each cell As DataGridViewCell In row.Cells.Cast(Of DataGridViewCell).Reverse()
+                If cell.Visible Then
+                    rc = New Rectangle(x, y, cell.Size.Width - 10, cell.Size.Height)
+
+                    ' SAMPLE CODE: How To 
+                    ' up a RowPrePaint rule
+                    'If Convert.ToDecimal(row.Cells(5).Value) < 9.99 Then
+                    '    Using br As New SolidBrush(Color.MistyRose)
+                    '        e.Graphics.FillRectangle(br, rc)
+                    '    End Using
+                    'End If
+
+                    e.Graphics.DrawRectangle(Pens.Black, rc)
+
+                    Select Case dgvZZ.Columns(cell.ColumnIndex).DefaultCellStyle.Alignment
+                        Case DataGridViewContentAlignment.BottomRight,
+                         DataGridViewContentAlignment.MiddleRight
+                            fmt.Alignment = StringAlignment.Far
+                            rc.Offset(-1, 0)
+                        Case DataGridViewContentAlignment.BottomCenter,
+                        DataGridViewContentAlignment.MiddleCenter
+                            fmt.Alignment = StringAlignment.Center
+                        Case Else
+                            fmt.Alignment = StringAlignment.Near
+                            rc.Offset(2, 0)
+                    End Select
+
+                    Dim txt_rc As Rectangle = New Rectangle(x - 10, y, cell.Size.Width - 10, cell.Size.Height)
+                    textFont = New Font("Abdo Free", 10, FontStyle.Regular)
+                    e.Graphics.DrawString(cell.FormattedValue.ToString(),
+                                      textFont, Brushes.Black, txt_rc, fmt)
+
+                    x += rc.Width
+                    h = Math.Max(h, rc.Height)
+                End If
+
+            Next
+            y += h
+            ' next row to print
+            mRow = thisNDX + 1
+
+            If y + h > e.MarginBounds.Bottom Then
+                e.HasMorePages = True
+                ' mRow -= 1   causes last row to rePrint on next page
+                newpage = True
+                Return
+            End If
+        Next
+    End Sub
+
+
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        mRow = 0
+        newpage = True
+        PrintPreviewDialog1.PrintPreviewControl.StartPage = 0
+        PrintPreviewDialog1.PrintPreviewControl.Zoom = 1.0
+
+        PrintPreviewDialog1.Document = PrintDocument1
+        PrintPreviewDialog1.Document.DefaultPageSettings.Landscape = True
+        PrintPreviewDialog1.ShowDialog()
+    End Sub
 End Class

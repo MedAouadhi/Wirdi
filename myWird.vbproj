@@ -212,6 +212,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\53320133_2540557196017212_3759115584034308096_n.jpg" />
+    <None Include="Resources\button-png-5a3740be62b8c9.01574845151357049440441.jpg" />
+    <None Include="Resources\button-png-5a3740be62b8c9.0157484515135704944044.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
