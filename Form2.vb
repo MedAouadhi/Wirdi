@@ -39,6 +39,7 @@
 
         'get the initial matinList count
         oldMatinCount = matinList.Count
+
         Dim content As String = ""
         Dim row As Integer = 0
         Dim col As Integer = 0
@@ -62,7 +63,7 @@
         'the total number of needed weeks is the number of weeks needed to finish the 
         'new hifdh plus the last hizb needed days to be added completely to the matinlist.
         ' a hizb = 9 pages
-        weeks = weeks + (9 * Form1.hifdhCounter) / 7
+        weeks = Math.Max((weeks + (9 * Form1.hifdhCounter) / (7 - tasmiiCount)), dhaifList.Count / (7 - tasmiiCount))
         'Create the necessary rows
         For index As Integer = 0 To weeks - 1
             Me.DataGridView1.Rows.Add()
@@ -93,8 +94,9 @@
             End If
 
             'fill the date in the datagrid view
+            Form1.DateTimePicker1.Value.Subtract(New TimeSpan(startDay, 0, 0))
             Dim NewDate As Date = DateAdd(DateInterval.WeekOfYear, row, Form1.DateTimePicker1.Value)
-            Dim weekDate As String = "الأسبوع ال" + (row + 1).ToString + Environment.NewLine + "(" + NewDate.Date.ToShortDateString + ")"
+            Dim weekDate As String = "الأسبوع ال" + (row + 1).ToString + Environment.NewLine + "(" + NewDate.Subtract(New TimeSpan(startDay, 0, 0)).ToShortDateString + ")"
             Me.DataGridView1.Item(0, row).Value = weekDate
             Dim cellStyle As DataGridViewCellStyle = New DataGridViewCellStyle()
             cellStyle.Font = New Font("Abdo Free", 13, FontStyle.Regular)
@@ -128,7 +130,7 @@
                                          dhaRet, 'tamtin dha3if
                                          lastRet) 'last hizb 
 
-
+                'TODO: the lasthizb updating is not dependent on the hifdh counter, and should be fi
                 If (li < newHifdhList.Count) Then
                     lastHizbToMatin = updateLastHizb(hifdhRet, li)
                 Else
@@ -415,11 +417,11 @@
         ' matin pace needs the matinCount that is updated everyday and so this is a prediction 
         'of the matinCount for the whole week
         Dim matinCount As Integer = matinList.Count '+ If(lastHizbList.Count > (7 - tasmiiCount), (7 - tasmiiCount) * Form1.hifdhCounter, 0)
-        'matinCount += If(dhaifList.Count > (7 - tasmiiCount), (7 - tasmiiCount) * Form1.hifdhCounter, 0)
+        'matinCount += If(dhaifList.Count > (7 - tasmiiCount), (7 - tasmiiCount), dhaifList.Count)
         'matin list recalculation
-        If (day = 0) Then
-            matinPace = matinCount \ (7 - tasmiiCount)
-        End If
+        'If (day = 0) Then
+        matinPace = matinCount \ (7 - tasmiiCount)
+        'End If
         If ((day < (6 - tasmiiCount)) And (matinPace > 0)) Then
             matinIndexS = day * matinPace + If(day = 0, 0, 1)
             matinIndexE = (day + 1) * matinPace
@@ -599,13 +601,10 @@
 
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
-        mRow = 0
-        newpage = True
-        PrintPreviewDialog1.PrintPreviewControl.StartPage = 0
-        PrintPreviewDialog1.PrintPreviewControl.Zoom = 1.0
-
-        PrintPreviewDialog1.Document = PrintDocument1
-        PrintPreviewDialog1.Document.DefaultPageSettings.Landscape = True
-        PrintPreviewDialog1.ShowDialog()
+        If PrintDialog1.ShowDialog = DialogResult.OK Then
+            PrintDocument1.PrinterSettings = PrintDialog1.PrinterSettings
+            PrintDocument1.Print()
+        End If
     End Sub
+
 End Class

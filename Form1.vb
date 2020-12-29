@@ -28,13 +28,13 @@
         daysEn.InsertRange(0, {"Sunday", "Monday", "Tuesday", "Wednesday", "Thurday", "Friday", "Saturday"})
 
         'test inputs 
-        TextBox_Name.Text = "Mohamed"
-        RadioButton1.Checked = True
-        TextBox_start.Text = "50"
-        TextBox_end.Text = "56"
-        TextBox_newStart.Text = "139"
-        TextBox_newEnd2.Text = "184"
-        ComboBox_hifdh.SelectedIndex = 1
+        'TextBox_Name.Text = "Mohamed"
+        'RadioButton1.Checked = True
+        'TextBox_start.Text = "50"
+        'TextBox_end.Text = "56"
+        'TextBox_newStart.Text = "139"
+        'TextBox_newEnd2.Text = "184"
+        'ComboBox_hifdh.SelectedIndex = 1
     End Sub
 
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click

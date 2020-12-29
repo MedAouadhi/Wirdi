@@ -22,8 +22,8 @@ Partial Class Form2
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form2))
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -37,6 +37,8 @@ Partial Class Form2
         Me.PrintPreviewDialog1 = New System.Windows.Forms.PrintPreviewDialog()
         Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.PrintDialog1 = New System.Windows.Forms.PrintDialog()
+        Me.PageSetupDialog1 = New System.Windows.Forms.PageSetupDialog()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -46,24 +48,24 @@ Partial Class Form2
         Me.DataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.DataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace
         Me.DataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.Indigo
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.InactiveBorder
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle29.BackColor = System.Drawing.Color.Indigo
+        DataGridViewCellStyle29.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.InactiveBorder
+        DataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle29
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8})
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle30.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle30.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle30.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle30
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Top
         Me.DataGridView1.Location = New System.Drawing.Point(0, 0)
         Me.DataGridView1.Name = "DataGridView1"
@@ -142,12 +144,17 @@ Partial Class Form2
         Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Abdo Free", 16.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(867, 622)
+        Me.Button1.Location = New System.Drawing.Point(688, 622)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(200, 63)
         Me.Button1.TabIndex = 4
         Me.Button1.Text = "طباعة الرزنامة"
         Me.Button1.UseVisualStyleBackColor = True
+        '
+        'PrintDialog1
+        '
+        Me.PrintDialog1.Document = Me.PrintDocument1
+        Me.PrintDialog1.UseEXDialog = True
         '
         'Form2
         '
@@ -181,4 +188,6 @@ Partial Class Form2
     Friend WithEvents Button1 As Button
     Friend WithEvents PrintPreviewDialog1 As PrintPreviewDialog
     Friend WithEvents PrintDocument1 As Printing.PrintDocument
+    Friend WithEvents PrintDialog1 As PrintDialog
+    Friend WithEvents PageSetupDialog1 As PageSetupDialog
 End Class
