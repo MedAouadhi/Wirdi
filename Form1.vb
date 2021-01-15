@@ -97,49 +97,49 @@
 
         Dim sp As Integer
         Dim ep As Integer
-
-        tasmiiCount = CInt(ComboBox4.Text)
-        startDate = DateTimePicker1.Text
-
-        dhaifList.Clear()
-        matinList.Clear()
-        newList.Clear()
-
-        If (validateControls()) Then
-            For Each r As DataGridViewRow In DataGridView1.Rows
-                If (r.IsNewRow) Then
-                    Exit For
-                End If
-                sp = CInt(r.Cells(0).Value)
-                ep = CInt(r.Cells(1).Value)
-
-                If (r.Cells(2).Value = "ضعيف") Then
-                    'fill dha3if hifdh list with whole pages
-                    dhaifList.AddRange(getListFromPages(sp, ep - sp + 1))
-                Else
-                    'fill matin hifdh with whole pages
-                    matinList.AddRange(getListFromPages(sp, ep - sp + 1))
-                End If
-            Next
-
-            sp = CInt(TextBox_newStart.Text)
-            ep = CInt(TextBox_newEnd2.Text)
-            'sort the tables
-            newList.AddRange(getListFromPages(sp, ep - sp + 1))
-
-            'we sort the lists to be able to manage them in an incremental order 
-            dhaifList.Sort()
-            matinList.Sort()
-
-            If (ComboBox_hifdh.Text = "نصف صفحة") Then
-                hifdhCounter = 2
-            ElseIf (ComboBox_hifdh.Text = "صفحة كاملة") Then
-                hifdhCounter = 1
-            Else
-                hifdhCounter = 0.5 'for 2 pages hifdh
-            End If
-            Form2.Show()
-        End If
+        Form3.Show()
+        'tasmiiCount = CInt(ComboBox4.Text)
+        'startDate = DateTimePicker1.Text
+        '
+        'dhaifList.Clear()
+        'matinList.Clear()
+        'newList.Clear()
+        '
+        'If (validateControls()) Then
+        '    For Each r As DataGridViewRow In DataGridView1.Rows
+        '        If (r.IsNewRow) Then
+        '            Exit For
+        '        End If
+        '        sp = CInt(r.Cells(0).Value)
+        '        ep = CInt(r.Cells(1).Value)
+        '
+        '        If (r.Cells(2).Value = "ضعيف") Then
+        '            'fill dha3if hifdh list with whole pages
+        '            dhaifList.AddRange(getListFromPages(sp, ep - sp + 1))
+        '        Else
+        '            'fill matin hifdh with whole pages
+        '            matinList.AddRange(getListFromPages(sp, ep - sp + 1))
+        '        End If
+        '    Next
+        '
+        '    sp = CInt(TextBox_newStart.Text)
+        '    ep = CInt(TextBox_newEnd2.Text)
+        '    'sort the tables
+        '    newList.AddRange(getListFromPages(sp, ep - sp + 1))
+        '
+        '    'we sort the lists to be able to manage them in an incremental order 
+        '    dhaifList.Sort()
+        '    matinList.Sort()
+        '
+        '    If (ComboBox_hifdh.Text = "نصف صفحة") Then
+        '        hifdhCounter = 2
+        '    ElseIf (ComboBox_hifdh.Text = "صفحة كاملة") Then
+        '        hifdhCounter = 1
+        '    Else
+        '        hifdhCounter = 0.5 'for 2 pages hifdh
+        '    End If
+        '    Form2.Show()
+        'End If
 
     End Sub
 
