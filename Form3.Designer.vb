@@ -22,6 +22,7 @@ Partial Class Form3
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form3))
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Button109 = New System.Windows.Forms.Button()
         Me.Button110 = New System.Windows.Forms.Button()
@@ -140,6 +141,7 @@ Partial Class Form3
         Me.Button115 = New System.Windows.Forms.Button()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton3 = New System.Windows.Forms.RadioButton()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -1306,12 +1308,11 @@ Partial Class Form3
         Me.RadioButton1.AutoSize = True
         Me.RadioButton1.Font = New System.Drawing.Font("Abdo Free", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RadioButton1.ForeColor = System.Drawing.Color.ForestGreen
-        Me.RadioButton1.Location = New System.Drawing.Point(780, 694)
+        Me.RadioButton1.Location = New System.Drawing.Point(812, 694)
         Me.RadioButton1.Name = "RadioButton1"
         Me.RadioButton1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.RadioButton1.Size = New System.Drawing.Size(126, 43)
         Me.RadioButton1.TabIndex = 2
-        Me.RadioButton1.TabStop = True
         Me.RadioButton1.Text = " حفظ متين "
         Me.RadioButton1.UseVisualStyleBackColor = True
         '
@@ -1320,14 +1321,26 @@ Partial Class Form3
         Me.RadioButton2.AutoSize = True
         Me.RadioButton2.Font = New System.Drawing.Font("Abdo Free", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RadioButton2.ForeColor = System.Drawing.Color.DarkSlateGray
-        Me.RadioButton2.Location = New System.Drawing.Point(565, 694)
+        Me.RadioButton2.Location = New System.Drawing.Point(611, 694)
         Me.RadioButton2.Name = "RadioButton2"
         Me.RadioButton2.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.RadioButton2.Size = New System.Drawing.Size(143, 43)
         Me.RadioButton2.TabIndex = 3
-        Me.RadioButton2.TabStop = True
         Me.RadioButton2.Text = "حفظ ضعيف "
         Me.RadioButton2.UseVisualStyleBackColor = True
+        '
+        'RadioButton3
+        '
+        Me.RadioButton3.AutoSize = True
+        Me.RadioButton3.Font = New System.Drawing.Font("Abdo Free", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButton3.ForeColor = System.Drawing.Color.RoyalBlue
+        Me.RadioButton3.Location = New System.Drawing.Point(438, 694)
+        Me.RadioButton3.Name = "RadioButton3"
+        Me.RadioButton3.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.RadioButton3.Size = New System.Drawing.Size(125, 43)
+        Me.RadioButton3.TabIndex = 4
+        Me.RadioButton3.Text = "حفظ جديد "
+        Me.RadioButton3.UseVisualStyleBackColor = True
         '
         'Form3
         '
@@ -1335,12 +1348,14 @@ Partial Class Form3
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(980, 759)
+        Me.Controls.Add(Me.RadioButton3)
         Me.Controls.Add(Me.RadioButton2)
         Me.Controls.Add(Me.RadioButton1)
         Me.Controls.Add(Me.Button115)
         Me.Controls.Add(Me.Panel1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form3"
-        Me.Text = "Form3"
+        Me.Text = "اختيار السور"
         Me.Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -1465,4 +1480,5 @@ Partial Class Form3
     Friend WithEvents Button115 As Button
     Friend WithEvents RadioButton1 As RadioButton
     Friend WithEvents RadioButton2 As RadioButton
+    Friend WithEvents RadioButton3 As RadioButton
 End Class

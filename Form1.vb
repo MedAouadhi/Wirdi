@@ -12,6 +12,7 @@
     Public newList As List(Of Integer) = New List(Of Integer)
     Public lastHifdhList As List(Of Integer) = New List(Of Integer)
     Public hifdhCounter As Double = 0
+    Public btnState(114) As Integer
 
     Function getListFromPages(startP As Integer, endP As Integer) As Integer()
         Return Enumerable.Range(startP, endP).ToArray
@@ -209,4 +210,8 @@
         Form3.Show()
     End Sub
 
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        callerId = 2
+        Form3.Show()
+    End Sub
 End Class

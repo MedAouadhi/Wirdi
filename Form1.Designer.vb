@@ -59,6 +59,7 @@ Partial Class Form1
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.TextBox_newEnd2 = New System.Windows.Forms.TextBox()
         Me.ComboBox_tasmii3 = New System.Windows.Forms.ComboBox()
+        Me.Button5 = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -281,7 +282,7 @@ Partial Class Form1
         Me.Label10.AutoSize = True
         Me.Label10.BackColor = System.Drawing.Color.Transparent
         Me.Label10.Font = New System.Drawing.Font("Aldhabi", 25.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(357, 210)
+        Me.Label10.Location = New System.Drawing.Point(370, 314)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(193, 67)
         Me.Label10.TabIndex = 25
@@ -292,7 +293,7 @@ Partial Class Form1
         Me.ComboBox_hifdh.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBox_hifdh.FormattingEnabled = True
         Me.ComboBox_hifdh.Items.AddRange(New Object() {"نصف صفحة", "صفحة كاملة", "صفحتان"})
-        Me.ComboBox_hifdh.Location = New System.Drawing.Point(144, 237)
+        Me.ComboBox_hifdh.Location = New System.Drawing.Point(157, 341)
         Me.ComboBox_hifdh.Name = "ComboBox_hifdh"
         Me.ComboBox_hifdh.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.ComboBox_hifdh.Size = New System.Drawing.Size(170, 37)
@@ -303,7 +304,7 @@ Partial Class Form1
         Me.Label9.AutoSize = True
         Me.Label9.BackColor = System.Drawing.Color.Transparent
         Me.Label9.Font = New System.Drawing.Font("Aldhabi", 28.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(404, 115)
+        Me.Label9.Location = New System.Drawing.Point(417, 219)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(157, 75)
         Me.Label9.TabIndex = 24
@@ -314,7 +315,7 @@ Partial Class Form1
         Me.Label11.AutoSize = True
         Me.Label11.BackColor = System.Drawing.Color.Transparent
         Me.Label11.Font = New System.Drawing.Font("Aldhabi", 28.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(404, 294)
+        Me.Label11.Location = New System.Drawing.Point(417, 398)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(139, 75)
         Me.Label11.TabIndex = 27
@@ -323,7 +324,7 @@ Partial Class Form1
         'DateTimePicker1
         '
         Me.DateTimePicker1.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DateTimePicker1.Location = New System.Drawing.Point(30, 326)
+        Me.DateTimePicker1.Location = New System.Drawing.Point(43, 430)
         Me.DateTimePicker1.Name = "DateTimePicker1"
         Me.DateTimePicker1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.DateTimePicker1.Size = New System.Drawing.Size(351, 34)
@@ -333,7 +334,7 @@ Partial Class Form1
         '
         Me.ComboBox_tasmii1.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBox_tasmii1.FormattingEnabled = True
-        Me.ComboBox_tasmii1.Location = New System.Drawing.Point(170, 132)
+        Me.ComboBox_tasmii1.Location = New System.Drawing.Point(183, 236)
         Me.ComboBox_tasmii1.Name = "ComboBox_tasmii1"
         Me.ComboBox_tasmii1.Size = New System.Drawing.Size(119, 37)
         Me.ComboBox_tasmii1.TabIndex = 29
@@ -343,7 +344,7 @@ Partial Class Form1
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Abdo Free", 16.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
-        Me.Label2.Location = New System.Drawing.Point(118, 43)
+        Me.Label2.Location = New System.Drawing.Point(133, 111)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(100, 37)
         Me.Label2.TabIndex = 19
@@ -363,7 +364,7 @@ Partial Class Form1
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Abdo Free", 16.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
-        Me.Label3.Location = New System.Drawing.Point(295, 43)
+        Me.Label3.Location = New System.Drawing.Point(310, 111)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(103, 37)
         Me.Label3.TabIndex = 18
@@ -374,7 +375,7 @@ Partial Class Form1
         Me.ComboBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBox4.FormattingEnabled = True
         Me.ComboBox4.Items.AddRange(New Object() {"1", "2"})
-        Me.ComboBox4.Location = New System.Drawing.Point(318, 132)
+        Me.ComboBox4.Location = New System.Drawing.Point(331, 236)
         Me.ComboBox4.Name = "ComboBox4"
         Me.ComboBox4.Size = New System.Drawing.Size(63, 37)
         Me.ComboBox4.TabIndex = 32
@@ -389,7 +390,7 @@ Partial Class Form1
         'TextBox_newStart
         '
         Me.TextBox_newStart.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_newStart.Location = New System.Drawing.Point(224, 46)
+        Me.TextBox_newStart.Location = New System.Drawing.Point(239, 114)
         Me.TextBox_newStart.Name = "TextBox_newStart"
         Me.TextBox_newStart.Size = New System.Drawing.Size(65, 34)
         Me.TextBox_newStart.TabIndex = 16
@@ -409,6 +410,7 @@ Partial Class Form1
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.Ivory
+        Me.Panel1.Controls.Add(Me.Button5)
         Me.Panel1.Controls.Add(Me.TextBox_newEnd2)
         Me.Panel1.Controls.Add(Me.ComboBox_tasmii3)
         Me.Panel1.Controls.Add(Me.Label4)
@@ -432,7 +434,7 @@ Partial Class Form1
         'TextBox_newEnd2
         '
         Me.TextBox_newEnd2.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox_newEnd2.Location = New System.Drawing.Point(30, 46)
+        Me.TextBox_newEnd2.Location = New System.Drawing.Point(45, 114)
         Me.TextBox_newEnd2.Name = "TextBox_newEnd2"
         Me.TextBox_newEnd2.Size = New System.Drawing.Size(65, 34)
         Me.TextBox_newEnd2.TabIndex = 34
@@ -442,10 +444,20 @@ Partial Class Form1
         Me.ComboBox_tasmii3.Enabled = False
         Me.ComboBox_tasmii3.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBox_tasmii3.FormattingEnabled = True
-        Me.ComboBox_tasmii3.Location = New System.Drawing.Point(19, 132)
+        Me.ComboBox_tasmii3.Location = New System.Drawing.Point(32, 236)
         Me.ComboBox_tasmii3.Name = "ComboBox_tasmii3"
         Me.ComboBox_tasmii3.Size = New System.Drawing.Size(119, 37)
         Me.ComboBox_tasmii3.TabIndex = 33
+        '
+        'Button5
+        '
+        Me.Button5.Font = New System.Drawing.Font("Abdo Free", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
+        Me.Button5.Location = New System.Drawing.Point(136, 41)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(191, 42)
+        Me.Button5.TabIndex = 35
+        Me.Button5.Text = "اختيار السور"
+        Me.Button5.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -514,4 +526,5 @@ Partial Class Form1
     Friend WithEvents TextBox_newEnd2 As TextBox
     Friend WithEvents TextBox_Name As TextBox
     Friend WithEvents Button4 As Button
+    Friend WithEvents Button5 As Button
 End Class

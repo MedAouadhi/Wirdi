@@ -603,6 +603,7 @@
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
         If PrintDialog1.ShowDialog = DialogResult.OK Then
             PrintDocument1.PrinterSettings = PrintDialog1.PrinterSettings
+            PrintDocument1.DefaultPageSettings.Landscape = True
             PrintDocument1.Print()
         End If
     End Sub
