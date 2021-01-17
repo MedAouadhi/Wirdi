@@ -37,6 +37,7 @@ Partial Class Form1
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
@@ -72,9 +73,9 @@ Partial Class Form1
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button1.Font = New System.Drawing.Font("Aldhabi", 28.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.Azure
-        Me.Button1.Location = New System.Drawing.Point(536, 545)
+        Me.Button1.Location = New System.Drawing.Point(536, 626)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(204, 75)
+        Me.Button1.Size = New System.Drawing.Size(204, 81)
         Me.Button1.TabIndex = 0
         Me.Button1.Text = "صناعة الجدول"
         Me.Button1.UseVisualStyleBackColor = False
@@ -102,7 +103,7 @@ Partial Class Form1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3})
-        Me.DataGridView1.Location = New System.Drawing.Point(143, 104)
+        Me.DataGridView1.Location = New System.Drawing.Point(125, 152)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.DataGridView1.RowHeadersVisible = False
@@ -135,14 +136,14 @@ Partial Class Form1
         '
         'TextBox_start
         '
-        Me.TextBox_start.Location = New System.Drawing.Point(412, 44)
+        Me.TextBox_start.Location = New System.Drawing.Point(428, 92)
         Me.TextBox_start.Name = "TextBox_start"
         Me.TextBox_start.Size = New System.Drawing.Size(65, 34)
         Me.TextBox_start.TabIndex = 9
         '
         'TextBox_end
         '
-        Me.TextBox_end.Location = New System.Drawing.Point(248, 44)
+        Me.TextBox_end.Location = New System.Drawing.Point(264, 92)
         Me.TextBox_end.Name = "TextBox_end"
         Me.TextBox_end.Size = New System.Drawing.Size(72, 34)
         Me.TextBox_end.TabIndex = 10
@@ -152,7 +153,7 @@ Partial Class Form1
         Me.ComboBox1.Font = New System.Drawing.Font("Traditional Arabic", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Items.AddRange(New Object() {"متين", "ضعيف"})
-        Me.ComboBox1.Location = New System.Drawing.Point(105, 44)
+        Me.ComboBox1.Location = New System.Drawing.Point(121, 92)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(75, 34)
         Me.ComboBox1.TabIndex = 11
@@ -160,7 +161,7 @@ Partial Class Form1
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(498, 49)
+        Me.Label5.Location = New System.Drawing.Point(514, 97)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(65, 26)
         Me.Label5.TabIndex = 12
@@ -169,7 +170,7 @@ Partial Class Form1
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(339, 47)
+        Me.Label6.Location = New System.Drawing.Point(355, 95)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(64, 26)
         Me.Label6.TabIndex = 13
@@ -178,7 +179,7 @@ Partial Class Form1
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(196, 49)
+        Me.Label7.Location = New System.Drawing.Point(212, 97)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(36, 26)
         Me.Label7.TabIndex = 14
@@ -187,6 +188,7 @@ Partial Class Form1
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.GroupBox1.Controls.Add(Me.Button4)
         Me.GroupBox1.Controls.Add(Me.Button3)
         Me.GroupBox1.Controls.Add(Me.Button2)
         Me.GroupBox1.Controls.Add(Me.Label7)
@@ -200,25 +202,37 @@ Partial Class Form1
         Me.GroupBox1.Location = New System.Drawing.Point(33, 162)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.GroupBox1.Size = New System.Drawing.Size(611, 281)
+        Me.GroupBox1.Size = New System.Drawing.Size(611, 346)
         Me.GroupBox1.TabIndex = 15
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "الحفظ القديم"
         '
+        'Button4
+        '
+        Me.Button4.Font = New System.Drawing.Font("Abdo Free", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
+        Me.Button4.Location = New System.Drawing.Point(237, 24)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(191, 42)
+        Me.Button4.TabIndex = 17
+        Me.Button4.Text = "اختيار السور"
+        Me.Button4.UseVisualStyleBackColor = True
+        '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(40, 160)
+        Me.Button3.Font = New System.Drawing.Font("Abdo Free", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
+        Me.Button3.Location = New System.Drawing.Point(18, 211)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(72, 31)
+        Me.Button3.Size = New System.Drawing.Size(88, 38)
         Me.Button3.TabIndex = 16
         Me.Button3.Text = "احذف"
         Me.Button3.UseVisualStyleBackColor = True
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(15, 44)
+        Me.Button2.Font = New System.Drawing.Font("Abdo Free", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
+        Me.Button2.Location = New System.Drawing.Point(22, 92)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 30)
+        Me.Button2.Size = New System.Drawing.Size(84, 34)
         Me.Button2.TabIndex = 15
         Me.Button2.Text = "أضف"
         Me.Button2.UseVisualStyleBackColor = True
@@ -259,7 +273,7 @@ Partial Class Form1
         Me.Panel2.Controls.Add(Me.Label1)
         Me.Panel2.Location = New System.Drawing.Point(635, 49)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(670, 465)
+        Me.Panel2.Size = New System.Drawing.Size(670, 543)
         Me.Panel2.TabIndex = 36
         '
         'Label10
@@ -328,10 +342,10 @@ Partial Class Form1
         '
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.Transparent
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(113, 43)
+        Me.Label2.Font = New System.Drawing.Font("Abdo Free", 16.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
+        Me.Label2.Location = New System.Drawing.Point(118, 43)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(86, 25)
+        Me.Label2.Size = New System.Drawing.Size(100, 37)
         Me.Label2.TabIndex = 19
         Me.Label2.Text = "الى الصفحة"
         '
@@ -348,10 +362,10 @@ Partial Class Form1
         '
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.Color.Transparent
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(295, 40)
+        Me.Label3.Font = New System.Drawing.Font("Abdo Free", 16.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
+        Me.Label3.Location = New System.Drawing.Point(295, 43)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(99, 29)
+        Me.Label3.Size = New System.Drawing.Size(103, 37)
         Me.Label3.TabIndex = 18
         Me.Label3.Text = "من الصفحة"
         '
@@ -412,7 +426,7 @@ Partial Class Form1
         Me.Panel1.Controls.Add(Me.Label10)
         Me.Panel1.Location = New System.Drawing.Point(22, 49)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(594, 465)
+        Me.Panel1.Size = New System.Drawing.Size(594, 543)
         Me.Panel1.TabIndex = 35
         '
         'TextBox_newEnd2
@@ -442,7 +456,7 @@ Partial Class Form1
         Me.BackColor = System.Drawing.Color.PowderBlue
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(1330, 642)
+        Me.ClientSize = New System.Drawing.Size(1330, 729)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Button1)
@@ -499,4 +513,5 @@ Partial Class Form1
     Friend WithEvents ComboBox_tasmii3 As ComboBox
     Friend WithEvents TextBox_newEnd2 As TextBox
     Friend WithEvents TextBox_Name As TextBox
+    Friend WithEvents Button4 As Button
 End Class

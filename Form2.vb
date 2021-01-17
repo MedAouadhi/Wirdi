@@ -63,7 +63,7 @@
         'the total number of needed weeks is the number of weeks needed to finish the 
         'new hifdh plus the last hizb needed days to be added completely to the matinlist.
         ' a hizb = 9 pages
-        weeks = Math.Max((weeks + (9 * Form1.hifdhCounter) / (7 - tasmiiCount)), dhaifList.Count / (7 - tasmiiCount))
+        weeks = Math.Max((weeks + (10 * Form1.hifdhCounter) / (7 - tasmiiCount)), dhaifList.Count / (7 - tasmiiCount))
         'Create the necessary rows
         For index As Integer = 0 To weeks - 1
             Me.DataGridView1.Rows.Add()
@@ -216,7 +216,7 @@
             Case 1
                 ' 1 page
                 lastHizbList.Add(CInt(hifdhRet))
-                If (lastHizbList.Count > 9) Then
+                If (lastHizbList.Count > 10) Then
                     retVal(0) = lastHizbList(0)
                     lastHizbList.RemoveRange(0, 1)
                 End If
@@ -224,7 +224,7 @@
                 ' 0.5 page
                 If ((li - 1) Mod 2 = 0) Then
                     lastHizbList.Add(Math.Floor(hifdhRet))
-                    If (lastHizbList.Count > 9) Then
+                    If (lastHizbList.Count > 10) Then
                         retVal(0) = lastHizbList(0)
                         lastHizbList.RemoveRange(0, 1)
                     End If

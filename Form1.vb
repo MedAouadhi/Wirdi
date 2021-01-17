@@ -1,5 +1,5 @@
 ﻿Public Class Form1
-
+    Public callerId As Integer
     Dim startPage As Integer
     Dim endPage As Integer
     Public daysEn As List(Of String) = New List(Of String)
@@ -62,7 +62,7 @@
         End If
 
         If (ComboBox1.Text = "") Then
-            MsgBox(" اختر متونة الحفظ من فظلك", MsgBoxStyle.Exclamation)
+            MsgBox(" اختر متونة الحفظ من فضلك", MsgBoxStyle.Exclamation)
             Return
         End If
 
@@ -97,49 +97,48 @@
 
         Dim sp As Integer
         Dim ep As Integer
-        Form3.Show()
-        'tasmiiCount = CInt(ComboBox4.Text)
-        'startDate = DateTimePicker1.Text
-        '
-        'dhaifList.Clear()
-        'matinList.Clear()
-        'newList.Clear()
-        '
-        'If (validateControls()) Then
-        '    For Each r As DataGridViewRow In DataGridView1.Rows
-        '        If (r.IsNewRow) Then
-        '            Exit For
-        '        End If
-        '        sp = CInt(r.Cells(0).Value)
-        '        ep = CInt(r.Cells(1).Value)
-        '
-        '        If (r.Cells(2).Value = "ضعيف") Then
-        '            'fill dha3if hifdh list with whole pages
-        '            dhaifList.AddRange(getListFromPages(sp, ep - sp + 1))
-        '        Else
-        '            'fill matin hifdh with whole pages
-        '            matinList.AddRange(getListFromPages(sp, ep - sp + 1))
-        '        End If
-        '    Next
-        '
-        '    sp = CInt(TextBox_newStart.Text)
-        '    ep = CInt(TextBox_newEnd2.Text)
-        '    'sort the tables
-        '    newList.AddRange(getListFromPages(sp, ep - sp + 1))
-        '
-        '    'we sort the lists to be able to manage them in an incremental order 
-        '    dhaifList.Sort()
-        '    matinList.Sort()
-        '
-        '    If (ComboBox_hifdh.Text = "نصف صفحة") Then
-        '        hifdhCounter = 2
-        '    ElseIf (ComboBox_hifdh.Text = "صفحة كاملة") Then
-        '        hifdhCounter = 1
-        '    Else
-        '        hifdhCounter = 0.5 'for 2 pages hifdh
-        '    End If
-        '    Form2.Show()
-        'End If
+        tasmiiCount = CInt(ComboBox4.Text)
+        startDate = DateTimePicker1.Text
+
+        dhaifList.Clear()
+        matinList.Clear()
+        newList.Clear()
+
+        If (validateControls()) Then
+            For Each r As DataGridViewRow In DataGridView1.Rows
+                If (r.IsNewRow) Then
+                    Exit For
+                End If
+                sp = CInt(r.Cells(0).Value)
+                ep = CInt(r.Cells(1).Value)
+
+                If (r.Cells(2).Value = "ضعيف") Then
+                    'fill dha3if hifdh list with whole pages
+                    dhaifList.AddRange(getListFromPages(sp, ep - sp + 1))
+                Else
+                    'fill matin hifdh with whole pages
+                    matinList.AddRange(getListFromPages(sp, ep - sp + 1))
+                End If
+            Next
+
+            sp = CInt(TextBox_newStart.Text)
+            ep = CInt(TextBox_newEnd2.Text)
+            'sort the tables
+            newList.AddRange(getListFromPages(sp, ep - sp + 1))
+
+            'we sort the lists to be able to manage them in an incremental order 
+            dhaifList.Sort()
+            matinList.Sort()
+
+            If (ComboBox_hifdh.Text = "نصف صفحة") Then
+                hifdhCounter = 2
+            ElseIf (ComboBox_hifdh.Text = "صفحة كاملة") Then
+                hifdhCounter = 1
+            Else
+                hifdhCounter = 0.5 'for 2 pages hifdh
+            End If
+            Form2.Show()
+        End If
 
     End Sub
 
@@ -171,6 +170,9 @@
         If (TextBox_newStart.Text = "" Or TextBox_newEnd2.Text = "") Then
             MsgBox("أدخل الحفظ الجديد من فضلك", MsgBoxStyle.Exclamation)
             Return False
+        ElseIf (Not isCorrectPage(CInt(TextBox_newStart.Text)) Or Not isCorrectPage(CInt(TextBox_newEnd2.Text))) Then
+            MsgBox("أدخل رقم صفحة صحيح من فضلك", MsgBoxStyle.Exclamation)
+            Return False
         End If
 
         If (ComboBox_hifdh.Text = "") Then
@@ -178,8 +180,11 @@
             Return False
         End If
 
-
         Return True
+    End Function
+
+    Private Function isCorrectPage(ByVal page As Integer) As Boolean
+        Return (page > 0 And page < 605)
     End Function
 
     Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
@@ -197,6 +202,11 @@
         Else
             GroupBox1.Enabled = True
         End If
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        callerId = 1
+        Form3.Show()
     End Sub
 
 End Class
